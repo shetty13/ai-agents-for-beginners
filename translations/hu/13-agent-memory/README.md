@@ -1,161 +1,170 @@
-# Memória AI ügynökök számára 
-[![Ügynök memória](../../../translated_images/hu/lesson-13-thumbnail.959e3bc52d210c64.webp)](https://youtu.be/QrYbHesIxpw?si=qNYW6PL3fb3lTPMk)
+# Memória az AI ügynökök számára  
+[![Agent Memory](../../../translated_images/hu/lesson-13-thumbnail.959e3bc52d210c64.webp)](https://youtu.be/QrYbHesIxpw?si=qNYW6PL3fb3lTPMk)
 
-Amikor az AI ügynökök létrehozásának egyedi előnyeiről beszélünk, két fő dolog kerül előtérbe: az eszközök használatának képessége a feladatok elvégzéséhez, valamint az idővel történő fejlődés képessége. A memória az alapja annak, hogy önfejlesztő ügynököket hozzunk létre, amelyek jobb élményeket nyújthatnak a felhasználóink számára.
+Az AI ügynökök egyedi előnyeinek megvitatásakor elsősorban két dolog kerül szóba: az eszközök hívásának képessége a feladatok elvégzéséhez és az idővel való fejlődés képessége. A memória az önfejlesztő ügynök létrehozásának alapja, amely jobb élményeket képes nyújtani a felhasználók számára.
 
-Ebben a leckében megvizsgáljuk, mi is az AI ügynökök memóriája, hogyan kezelhetjük és használhatjuk azt alkalmazásaink javára.
+Ebben a leckében megnézzük, mi a memória az AI ügynökök számára, hogyan kezelhetjük azt, és hogyan használhatjuk az alkalmazásaink javára.
 
 ## Bevezetés
 
-Ez a lecke az alábbiakat fogja tárgyalni:
+Ez a lecke ezekkel foglalkozik:
 
-• **Az AI ügynök memória megértése**: Mi a memória, és miért elengedhetetlen az ügynökök számára.
+• **AI ügynök memória megértése**: Mi a memória és miért elengedhetetlen az ügynökök számára.
 
-• **Memória megvalósítása és tárolása**: Gyakorlati módszerek az AI ügynökök memória képességeinek hozzáadására, különös tekintettel a rövid és hosszú távú memóriára.
+• **A memória megvalósítása és tárolása**: Gyakorlati módszerek az AI ügynökök memóriaképességeinek hozzáadására, különös tekintettel a rövid- és hosszútávú memóriára.
 
-• **Önfejlesztő AI ügynökök létrehozása**: Hogyan teszi lehetővé a memória az ügynökök számára, hogy tanuljanak a korábbi interakciókból és idővel fejlődjenek.
+• **Az AI ügynökök önfejlesztővé tétele**: Hogyan teszi lehetővé a memória az ügynökök számára, hogy megtanuljanak a múltbeli interakciókból és idővel fejlődjenek.
 
 ## Elérhető megvalósítások
 
-Ez a lecke két átfogó notebook oktatóanyagot tartalmaz:
+Ez a lecke két átfogó jegyzetfüzet-tutorialt tartalmaz:
 
-• **[13-agent-memory.ipynb](./13-agent-memory.ipynb)**: Memóriát valósít meg a Mem0 és az Azure AI Search segítségével a Semantic Kernel keretrendszerben.
+• **[13-agent-memory.ipynb](./13-agent-memory.ipynb)**: Mem0 és Azure AI Search használatával, Semantic Kernel keretrendszerrel megvalósított memória
 
-• **[13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)**: Strukturált memóriát valósít meg a Cognee segítségével, automatikusan tudásgrafikonokat épít beágyazásokkal, grafikonokat vizualizál, és intelligens visszakeresést végez.
+• **[13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)**: Strukturált memóriát valósít meg Cognee segítségével, amely automatikusan építi a beágyazásokkal támogatott tudásgráfot, vizualizálja a gráfot, és intelligens lekérdezést biztosít
 
 ## Tanulási célok
 
-A lecke elvégzése után képes leszel:
+A lecke elvégzése után tudni fogja, hogyan:
 
-• **Megkülönböztetni az AI ügynök memória különböző típusait**, beleértve a munkamemóriát, rövid és hosszú távú memóriát, valamint a specializált formákat, mint például a személyiség és epizodikus memória.
+• **Megkülönböztesse az AI ügynök memória különféle típusait**, beleértve a munkamemóriát, rövid- és hosszútávú memóriát, valamint speciális formákat, mint a személyiség- és epizodikus memória.
 
-• **Rövid és hosszú távú memória megvalósítása és kezelése AI ügynökök számára** a Semantic Kernel keretrendszer segítségével, olyan eszközök használatával, mint a Mem0, Cognee, Whiteboard memória, és az Azure AI Search integrációja.
+• **Megvalósítsa és kezelje a rövid- és hosszútávú memóriát az AI ügynökök számára** a Semantic Kernel keretrendszer használatával, kihasználva olyan eszközöket, mint a Mem0, Cognee, Whiteboard memória, és integrálva az Azure AI Search-t.
 
-• **Megérteni az önfejlesztő AI ügynökök mögötti elveket**, és hogy a robusztus memória kezelési rendszerek hogyan járulnak hozzá a folyamatos tanuláshoz és alkalmazkodáshoz.
+• **Megértse az önfejlesztő AI ügynökök mögötti elveket** és azt, hogyan járulnak hozzá a robusztus memóriakezelési rendszerek a folyamatos tanuláshoz és alkalmazkodáshoz.
 
 ## Az AI ügynök memória megértése
 
-Alapvetően **az AI ügynökök memóriája azokat a mechanizmusokat jelenti, amelyek lehetővé teszik számukra az információk megőrzését és visszahívását**. Ez az információ lehet konkrét részlet egy beszélgetésről, felhasználói preferenciák, korábbi cselekvések vagy akár tanult minták.
+Alapvetően az **AI ügynökök memóriája azokat a mechanizmusokat jelenti, amelyek lehetővé teszik számukra az információk megtartását és előhívását**. Ezek az információk lehetnek beszélgetési részletek, felhasználói preferenciák, korábbi lépések vagy akár tanult mintázatok.
 
-Memória nélkül az AI alkalmazások gyakran állapotmentesek, ami azt jelenti, hogy minden interakció nulláról indul. Ez ismétlődő és frusztráló felhasználói élményhez vezet, ahol az ügynök "elfelejti" a korábbi kontextust vagy preferenciákat.
+Memória nélkül az AI alkalmazások gyakran állapot nélküli alkalmazások, azaz minden interakció újrakezdődik a nulláról. Ez ismétlődő és bosszantó felhasználói élményhez vezet, ahol az ügynök „elfelejti” a korábbi kontextust vagy preferenciákat.
 
 ### Miért fontos a memória?
 
-Az ügynök intelligenciája szorosan összefügg azzal, hogy képes-e visszahívni és felhasználni a korábbi információkat. A memória lehetővé teszi az ügynökök számára, hogy:
+Az ügynök intelligenciája szorosan összefügg a múltbéli információk előhívásának és felhasználásának képességével. A memória lehetővé teszi, hogy az ügynökök legyenek:
 
-• **Reflektívak legyenek**: Tanuljanak a korábbi cselekvésekből és eredményekből.
+• **Reflektívak**: tanuljanak a múltbéli cselekvésekből és eredményekből.
 
-• **Interaktívak legyenek**: Fenntartsák a kontextust egy folyamatban lévő beszélgetés során.
+• **Interaktívak**: fenntartsák a kontextust egy folyamatban lévő beszélgetés során.
 
-• **Proaktívak és reaktívak legyenek**: Előre jelezzék az igényeket vagy megfelelően reagáljanak a történelmi adatok alapján.
+• **Proaktívak és reaktívak**: előre lássák a szükségleteket vagy megfelelően reagáljanak a történelmi adatok alapján.
 
-• **Autonómak legyenek**: Függetlenebbül működjenek a tárolt tudás felhasználásával.
+• **Autonómok**: önállóbban működjenek a tárolt tudás felhasználásával.
 
-A memória megvalósításának célja, hogy az ügynökök megbízhatóbbak és képesebbek legyenek.
+A memória megvalósításának célja, hogy az ügynökök megbízhatóbbak és hatékonyabbak legyenek.
 
-### Memória típusai
+### A memória típusai
 
 #### Munkamemória
 
-Gondolj rá úgy, mint egy darab jegyzetpapírra, amelyet az ügynök egyetlen, folyamatban lévő feladat vagy gondolatmenet során használ. Ez tartalmazza az azonnali információkat, amelyek szükségesek a következő lépés kiszámításához.
+Gondoljunk rá úgy, mint egy vázlatlapra, amelyet egy ügynök használ egy folyamatban lévő feladat vagy gondolatmenet során. Ez azonnali információt tartalmaz, amely a következő lépés kiszámításához szükséges.
 
-Az AI ügynökök esetében a munkamemória gyakran a beszélgetés legrelevánsabb információit rögzíti, még akkor is, ha a teljes csevegési előzmény hosszú vagy rövidített. A kulcselemek, mint például követelmények, javaslatok, döntések és cselekvések kiemelésére összpontosít.
+Az AI ügynökök esetében a munkamemória általában a beszélgetés legfontosabb információit rögzíti, még akkor is, ha a teljes beszélgetési előzmény hosszú vagy csonkított. Arra összpontosít, hogy kiemelje a fő elemeket, mint a követelmények, javaslatok, döntések és lépések.
 
 **Munkamemória példa**
 
-Egy utazási foglalási ügynök esetében a munkamemória rögzítheti a felhasználó aktuális kérését, például "Szeretnék egy utat foglalni Párizsba". Ez a konkrét követelmény az ügynök azonnali kontextusában marad, hogy irányítsa a jelenlegi interakciót.
+Egy utazásszervező ügynöknél a munkamemória rögzítheti a felhasználó aktuális kérését, például: „Szeretnék egy utat foglalni Párizsba”. Ez a konkrét igény az ügynök közvetlen kontextusában marad az azonnali interakció irányítására.
 
-#### Rövid távú memória
+#### Rövidtávú memória
 
-Ez a memória típus egyetlen beszélgetés vagy munkamenet idejére őrzi meg az információkat. Ez a jelenlegi csevegés kontextusa, amely lehetővé teszi az ügynök számára, hogy visszautaljon a párbeszéd korábbi fordulataira.
+Ez a memória típus megtartja az információt egyetlen beszélgetés vagy munkamenet idejére. Ez a jelenlegi csevegés kontextusa, amely lehetővé teszi az ügynök számára, hogy visszautaljon a párbeszéd korábbi fordulóira.
 
-**Rövid távú memória példa**
+**Rövidtávú memória példa**
 
-Ha egy felhasználó megkérdezi: "Mennyibe kerülne egy repülőjegy Párizsba?" majd folytatja: "Mi a helyzet a szállással ott?", a rövid távú memória biztosítja, hogy az ügynök tudja, hogy "ott" Párizsra utal az adott beszélgetésen belül.
+Ha a felhasználó megkérdezi: „Mennyibe kerülne egy repülőút Párizsba?” majd utána: „És a szállás ott?”, a rövidtávú memória biztosítja, hogy az ügynök tudja, hogy az „ott” kifejezés ebben a beszélgetésben Párizsra utal.
 
-#### Hosszú távú memória
+#### Hosszútávú memória
 
-Ez az információ több beszélgetésen vagy munkameneten keresztül fennmarad. Lehetővé teszi az ügynökök számára, hogy emlékezzenek a felhasználói preferenciákra, történelmi interakciókra vagy általános tudásra hosszabb időszakokon keresztül. Ez fontos a személyre szabás szempontjából.
+Ez az információ több beszélgetés vagy munkamenet során is fennmarad. Lehetővé teszi az ügynökök számára, hogy megjegyezzék a felhasználói preferenciákat, történelmi interakciókat vagy általános tudást hosszabb időn keresztül. Ez fontos a személyre szabás szempontjából.
 
-**Hosszú távú memória példa**
+**Hosszútávú memória példa**
 
-A hosszú távú memória tárolhatja, hogy "Ben szeret síelni és szabadtéri tevékenységeket, szereti a kávét hegyi kilátással, és el akarja kerülni a haladó sípályákat egy korábbi sérülés miatt". Ez az információ, amelyet korábbi interakciókból tanult, befolyásolja a javaslatokat a jövőbeli utazástervezési munkamenetek során, rendkívül személyre szabottá téve azokat.
+A hosszútávú memória tárolhatja azt, hogy „Ben szeret síelni és a szabadtéri tevékenységeket, kávét szeret inni hegyi kilátással, és szeretné elkerülni a nehéz sípályákat egy korábbi sérülés miatt”. Ez az előző interakciókból tanult információ befolyásolja a jövőbeni utazástervezési ajánlásokat, amelyek így nagyon személyre szabottak lesznek.
 
 #### Személyiség memória
 
-Ez a specializált memória típus segít az ügynöknek egy következetes "személyiség" vagy "szerep" kialakításában. Lehetővé teszi az ügynök számára, hogy emlékezzen önmagára vagy a szándékolt szerepére, így az interakciók gördülékenyebbek és fókuszáltabbak lesznek.
+Ez a speciális memória típus segít az ügynöknek következetes „személyiséget” vagy „arculatot” kialakítani. Lehetővé teszi az ügynök számára, hogy megjegyezze saját magáról vagy tervezett szerepéről szóló részleteket, így a kommunikáció gördülékenyebb és fókuszáltabb lesz.
 
-**Személyiség memória példa**
-
-Ha az utazási ügynököt "síelési szakértőként" tervezték, a személyiség memória megerősítheti ezt a szerepet, befolyásolva a válaszait, hogy azok egy szakértő hangneméhez és tudásához igazodjanak.
+**Személyiség memória példa**  
+Ha az utazási ügynököt „szakelőtervezőként” alakították ki, a személyiség memória megerősítheti ezt a szerepet, befolyásolva a válaszokat, hogy azok megfeleljenek egy szakértő hangnemének és tudásának.
 
 #### Munkafolyamat/Epizodikus memória
 
-Ez a memória tárolja az ügynök által végrehajtott lépések sorozatát egy összetett feladat során, beleértve a sikereket és kudarcokat. Olyan, mintha az ügynök "epizódokat" vagy korábbi tapasztalatokat emlékezne meg, hogy tanuljon belőlük.
+Ez a memória tárolja a lépések sorrendjét, amelyeket az ügynök egy összetett feladat során tesz meg, beleértve a sikereket és kudarcokat is. Olyan, mint amikor az ügynök megjegyzi a korábbi „epizódokat” vagy élményeket, hogy tanuljon belőlük.
 
 **Epizodikus memória példa**
 
-Ha az ügynök megpróbált lefoglalni egy konkrét járatot, de az nem sikerült elérhetőség hiánya miatt, az epizodikus memória rögzítheti ezt a kudarcot, lehetővé téve az ügynök számára, hogy alternatív járatokat próbáljon ki, vagy tájékoztassa a felhasználót a problémáról egy következő próbálkozás során.
+Ha az ügynök megpróbált lefoglalni egy adott járatot, de az nem volt elérhető, az epizodikus memória rögzítheti ezt a kudarcot, lehetővé téve, hogy az ügynök alternatív járatokat próbáljon vagy tájékoztassa a felhasználót erről a problémáról egy későbbi próbálkozás során.
 
 #### Entitás memória
 
-Ez magában foglalja konkrét entitások (például emberek, helyek vagy dolgok) és események kivonását és megjegyzését a beszélgetésekből. Lehetővé teszi az ügynök számára, hogy strukturált megértést építsen a megbeszélt kulcselemekről.
+Ez magában foglalja az olyan konkrét entitások (például személyek, helyek vagy tárgyak) és események kinyerését és megjegyzését a beszélgetésekből. Lehetővé teszi az ügynök számára, hogy felépítsen egy strukturált megértést a kulcselemekről.
 
 **Entitás memória példa**
 
-Egy korábbi utazásról szóló beszélgetésből az ügynök kivonhatja "Párizs", "Eiffel-torony" és "vacsora a Le Chat Noir étteremben" entitásokat. Egy jövőbeli interakció során az ügynök emlékezhet a "Le Chat Noir"-ra, és felajánlhatja, hogy új foglalást készít ott.
+Egy korábbi utazásról szóló beszélgetésből az ügynök kinyerheti a „Párizs”, „Eiffel-torony” és „vacsora a Le Chat Noir étteremben” entitásokat. Egy jövőbeli interakcióban az ügynök felidézheti a „Le Chat Noir”-t és felajánlhatja egy új foglalás lehetőségét.
 
 #### Strukturált RAG (Retrieval Augmented Generation)
 
-Bár a RAG egy általános technika, a "Strukturált RAG" kiemelkedik, mint egy erőteljes memória technológia. Sűrű, strukturált információkat von ki különböző forrásokból (beszélgetések, e-mailek, képek), és használja a pontosság, visszahívás és válaszsebesség javítására. A klasszikus RAG-tól eltérően, amely kizárólag szemantikai hasonlóságra támaszkodik, a Strukturált RAG az információk belső struktúrájával dolgozik.
+Bár a RAG egy szélesebb körű technika, a „Strukturált RAG” kiemeltként jelenik meg, mint egy erőteljes memória-technológia. Ez az eszköz sűrű, strukturált információkat nyer ki különféle forrásokból (beszélgetések, e-mailek, képek) és felhasználja azokat a válaszok pontosságának, előhívásának és gyorsaságának növelésére. A klasszikus RAG bal kizárólag a szemantikai hasonlóságra támaszkodik, míg a Strukturált RAG az információ belső struktúrájával dolgozik.
 
 **Strukturált RAG példa**
 
-Ahelyett, hogy csak kulcsszavakat párosítana, a Strukturált RAG képes lenne elemezni repülési részleteket (célállomás, dátum, idő, légitársaság) egy e-mailből, és strukturált módon tárolni azokat. Ez lehetővé teszi a pontos lekérdezéseket, például "Melyik járatot foglaltam Párizsba kedden?"
+A kulcsszavak egyezése helyett a Strukturált RAG képes kinyerni a repülőjárat adatait (úti cél, dátum, idő, légitársaság) egy e-mailből, és strukturált módon tárolni azokat. Ez lehetővé teszi a precíz lekérdezéseket, például: „Milyen repülőt foglaltam Párizsba kedden?”
 
-## Memória megvalósítása és tárolása
+## A memória megvalósítása és tárolása
 
-Az AI ügynökök memóriájának megvalósítása egy **memóriakezelési** folyamatot foglal magában, amely magában foglalja az információk generálását, tárolását, visszakeresését, integrálását, frissítését, sőt "elfelejtését" (vagy törlését). A visszakeresés különösen kritikus szempont.
+A memória megvalósítása az AI ügynökök számára egy rendszerezett folyamatot jelent, azaz a **memóriakezelést**, amely magában foglalja az információ létrehozását, tárolását, előhívását, integrálását, frissítését, sőt elfelejtését (vagy törlését). Az előhívás különösen fontos elem.
 
-### Specializált memória eszközök
+### Speciális memóriaeszközök
 
 #### Mem0
 
-Az ügynök memória tárolásának és kezelésének egyik módja a specializált eszközök, például a Mem0 használata. A Mem0 egy tartós memória rétegként működik, lehetővé téve az ügynökök számára, hogy releváns interakciókat hívjanak vissza, felhasználói preferenciákat és tényszerű kontextust tároljanak, valamint tanuljanak a sikerekből és kudarcokból az idő múlásával. Az ötlet az, hogy az állapotmentes ügynökök állapotossá váljanak.
+Az ügynök memória tárolására és kezelésére egy mód a speciális eszközök, például a Mem0 használata. A Mem0 egy tartós memória rétegként működik, amely lehetővé teszi, hogy az ügynökök előhívják a releváns interakciókat, tárolják a felhasználói preferenciákat és tényadatokat, valamint tanuljanak a sikerekből és kudarcokból az idő múlásával. Az ötlet az, hogy az állapot nélküli ügynökök állapottal rendelkezővé váljanak.
 
-Ez egy **kétfázisú memória csővezetéken keresztül működik: kivonás és frissítés**. Először az ügynök szálához hozzáadott üzeneteket elküldik a Mem0 szolgáltatásnak, amely egy Nagy Nyelvi Modell (LLM) segítségével összefoglalja a beszélgetési előzményeket és új emlékeket von ki. Ezt követően egy LLM-alapú frissítési fázis határozza meg, hogy hozzáadja, módosítja vagy törli ezeket az emlékeket, és hibrid adatbázisban tárolja őket, amely tartalmazhat vektor, grafikon és kulcs-érték adatbázisokat. Ez a rendszer különböző memória típusokat is támogat, és beépítheti a grafikon memóriát az entitások közötti kapcsolatok kezelésére.
+Ez egy **kétfázisú memóriafolyamatot** használ: kinyerés és frissítés. Először az ügynök szálába érkező üzeneteket a Mem0 szolgáltatásnak továbbítják, amely egy Nagy Nyelvi Modell (LLM) segítségével összefoglalja a beszélgetés történetét és kinyeri az új emlékeket. Ezután egy LLM által vezérelt frissítési fázis dönti el, hogy az emlékeket hozzáadják, módosítsák vagy töröljék, és ezek egy hibrid adattárolóban kerülnek eltárolásra, amely lehet vektor-, gráf- vagy kulcs-érték adatbázis. Ez a rendszer több memóriatípust is támogat, és gráfmemóriát is beépíthet az entitások közötti kapcsolatok kezelésére.
 
 #### Cognee
 
-Egy másik hatékony megközelítés a **Cognee** használata, egy nyílt forráskódú szemantikai memória AI ügynökök számára, amely strukturált és strukturálatlan adatokat alakít át lekérdezhető tudásgrafikonokká, beágyazásokkal támogatva. A Cognee egy **kettős tároló architektúrát** kínál, amely ötvözi a vektor hasonlósági keresést a grafikon kapcsolatokkal, lehetővé téve az ügynökök számára, hogy ne csak azt értsék meg, milyen információk hasonlóak, hanem azt is, hogyan kapcsolódnak egymáshoz a fogalmak.
+Egy másik erőteljes megközelítés a **Cognee** használata, amely egy nyílt forráskódú szemantikus memória az AI ügynökök számára, amely az strukturált és strukturálatlan adatokat lekérdezhető tudásgráfokká alakítja, beágyazások segítségével támogatva. A Cognee egy **kettős tároló architektúrát** kínál, amely vektoros hasonlóságkeresést kombinál gráf kapcsolatkezeléssel, lehetővé téve az ügynökök számára, hogy megértsék nem csak a hasonló információkat, hanem azt is, hogy a fogalmak hogyan kapcsolódnak egymáshoz.
 
-Kiemelkedik a **hibrid visszakeresésben**, amely ötvözi a vektor hasonlóságot, grafikon struktúrát és LLM érvelést - a nyers darabok keresésétől a grafikon-tudatos kérdés megválaszolásig. A rendszer **élő memóriát** tart fenn, amely fejlődik és növekszik, miközben egyetlen összekapcsolt grafikonként lekérdezhető marad, támogatva mind a rövid távú munkamenet kontextust, mind a hosszú távú tartós memóriát.
+Kiemelkedő a **hibrid előhívásban**, amely ötvözi a vektoros hasonlóságot, a gráfszerkezetet és az LLM-alapú érvelést — a nyers töredékek keresésétől a gráf-tudatos kérdés-válaszolásig. A rendszer fenntart egy **élő memóriát**, amely fejlődik és nő ugyanakkor lekérdezhető marad egy egybefüggő gráfként, támogatva mind a rövid távú munkamenet kontextust, mind a hosszú távú tartós memóriát.
 
-A Cognee notebook oktatóanyag ([13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)) bemutatja ennek az egységes memória rétegnek az építését, gyakorlati példákkal a különféle adatforrások bevitelére, a tudásgrafikon vizualizálására és különböző keresési stratégiák alkalmazására, amelyek az ügynökök specifikus igényeihez igazodnak.
+A Cognee jegyzetfüzet bemutató ([13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)) szemlélteti ezt az egységes memória réteget gyakorlati példákkal, amelyekben különféle adatforrások bevitele, a tudásgráf vizualizálása és különböző keresési stratégiák alkalmazása történik az egyedi ügynöki igényekhez igazítva.
 
-### Memória tárolása RAG segítségével
+### Memória tárolása RAG-gal
 
-A Mem0-hoz hasonló specializált memória eszközökön túl robusztus keresési szolgáltatásokat is használhatsz, például **Azure AI Search-t a memóriák tárolására és visszakeresésére**, különösen a strukturált RAG esetében.
+A speciális memóriaeszközök, mint a Mem0 mellett, kihasználhatjuk az olyan robusztus keresési szolgáltatásokat, mint az **Azure AI Search**, mint háttérrendszert az emlékek tárolásához és előhívásához, különösen strukturált RAG esetén.
 
-Ez lehetővé teszi, hogy az ügynök válaszait a saját adataiddal alapozd meg, biztosítva a relevánsabb és pontosabb válaszokat. Az Azure AI Search használható felhasználó-specifikus utazási emlékek, termékkatalógusok vagy bármilyen más domain-specifikus tudás tárolására.
+Ez lehetővé teszi, hogy az ügynök válaszait saját adatain alapozzuk meg, biztosítva relevánsabb és pontosabb válaszokat. Az Azure AI Search tárolhat felhasználói utazási emlékeket, termékkatalógusokat vagy bármilyen más domain-specifikus tudást.
 
-Az Azure AI Search támogatja a **Strukturált RAG** képességeket, amelyek kiválóan alkalmasak sűrű, strukturált információk kinyerésére és visszakeresésére nagy adatállományokból, például beszélgetési előzményekből, e-mailekből vagy akár képekből. Ez "emberfeletti pontosságot és visszahívást" biztosít a hagyományos szövegdarabolási és beágyazási megközelítésekhez képest.
+Az Azure AI Search támogatja a **Strukturált RAG** képességet, amely kitűnően alkalmas nagy adathalmazokból (beszélgetések, e-mailek vagy akár képek) sűrű, strukturált információk kinyerésére és előhívására. Ez „emberfeletti pontosságot és előhívást” biztosít a hagyományos szövegtöredék- és beágyazás alapú megközelítésekhez képest.
 
-## AI ügynökök önfejlesztése
+## Az AI ügynökök önfejlesztővé tétele
 
-Az önfejlesztő ügynökök gyakori mintája egy **"tudás ügynök"** bevezetése. Ez a különálló ügynök megfigyeli a fő beszélgetést a felhasználó és az elsődleges ügynök között. Feladata:
+Az önfejlesztő ügynökök gyakori mintája a **„tudásügynök”** bevezetése. Ez a külön ügynök figyeli a felhasználó és az elsődleges ügynök közötti fő beszélgetést. Feladatai:
 
-1. **Értékes információk azonosítása**: Meghatározza, hogy a beszélgetés mely része érdemes általános tudásként vagy konkrét felhasználói preferenciaként megőrizni.
+1. **Értékes információk azonosítása**: Megállapítani, hogy a beszélgetés bármely része érdemes-e mentésre általános tudásként vagy felhasználói preferenciaként.
 
-2. **Kivonás és összefoglalás**: A beszélgetésből származó lényeges tanulás vagy preferencia kivonása.
+2. **Kinyerés és összefoglalás**: A beszélgetés lényeges tanulságának vagy preferenciájának kivonatolása.
 
-3. **Tárolás egy tudásbázisban**: Az így kivont információk tartósítása, gyakran egy vektor adatbázisban, hogy később visszakereshető legyen.
+3. **Tudásbázisban történő tárolás**: Az így kinyert információt gyakran vektorbázisú adatbázisba menti el későbbi előhívásra.
 
-4. **Jövőbeli lekérdezések kiegészítése**: Amikor a felhasználó új lek
+4. **Jövőbeli lekérdezések kiegészítése**: Ha a felhasználó új lekérdezést indít, a tudásügynök előhívja a releváns információkat és hozzáfűzi a felhasználó kérdéséhez, ezáltal fontos kontextust biztosítva az elsődleges ügynöknek (hasonlóan a RAG-hoz).
+
+### Memória optimalizációk
+
+• **Késleltetés kezelése**: A felhasználói interakciók lassítása elkerülése érdekében olcsóbb, gyorsabb modellt lehet használni előzetesen annak ellenőrzésére, hogy egy információ érdemes-e tárolásra vagy előhívásra, és csak szükség esetén hívni meg a bonyolultabb kinyerési/előhívási folyamatot.
+
+• **Tudásbázis karbantartása**: A növekvő tudásbázis esetén a ritkábban használt információkat „hideg tárolóba” lehet helyezni a költségek kezelése érdekében.
+
+## Több kérdése van az ügynök memória kapcsán?
+
+Csatlakozzon az [Azure AI Foundry Discord](https://aka.ms/ai-agents/discord) közösséghez, hogy találkozzon más tanulókkal, részt vegyen hivatalos órákon, és választ kapjon AI ügynökökkel kapcsolatos kérdéseire.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Felelősség kizárása**:  
-Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Fontos információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+**Jogi Nyilatkozat**:
+Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) használatával készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások tartalmazhatnak hibákat vagy pontatlanságokat. Az eredeti dokumentum az anyanyelvén tekintendő hivatalos forrásnak. Kritikus információk esetén javasolt professzionális, emberi fordítást használni. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
