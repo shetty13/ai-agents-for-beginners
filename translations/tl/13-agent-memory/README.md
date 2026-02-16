@@ -1,171 +1,171 @@
 # Memory para sa AI Agents 
-[![Memory ng Agent](../../../translated_images/tl/lesson-13-thumbnail.959e3bc52d210c64.webp)](https://youtu.be/QrYbHesIxpw?si=qNYW6PL3fb3lTPMk)
+[![Agent Memory](../../../translated_images/tl/lesson-13-thumbnail.959e3bc52d210c64.webp)](https://youtu.be/QrYbHesIxpw?si=qNYW6PL3fb3lTPMk)
 
-Kapag pinag-uusapan ang mga natatanging benepisyo ng paglikha ng AI Agents, dalawang bagay ang karaniwang binibigyang-diin: ang kakayahang gumamit ng mga tool para tapusin ang mga gawain at ang kakayahang mag-improve sa paglipas ng panahon. Ang memorya ang pundasyon ng paglikha ng self-improving agent na makakapagbigay ng mas mahusay na karanasan para sa ating mga user.
+Kapag pinag-uusapan ang mga natatanging benepisyo ng paglikha ng AI Agents, dalawang bagay ang kadalasang tinatalakay: ang kakayahang tumawag ng mga tool para tapusin ang mga gawain at ang kakayahang umunlad sa paglipas ng panahon. Ang memorya ay nasa pundasyon ng paglikha ng self-improving na ahente na makagagawa ng mas magagandang karanasan para sa ating mga gumagamit.
 
-Sa araling ito, tatalakayin natin kung ano ang memorya para sa AI Agents at kung paano natin ito mapapamahalaan at magagamit para sa kapakinabangan ng ating mga aplikasyon.
+Sa araling ito, tatalakayin natin kung ano ang memorya para sa AI Agents at kung paano natin ito mapapangasiwaan at magagamit para sa kapakinabangan ng ating mga aplikasyon.
 
 ## Panimula
 
-Saklaw ng araling ito ang:
+Saklaw ng araling ito:
 
-• **Pag-unawa sa Memorya ng AI Agent**: Ano ang memorya at bakit ito mahalaga para sa mga agent.
+• **Pag-unawa sa AI Agent Memory**: Ano ang memorya at bakit mahalaga ito para sa mga ahente.
 
-• **Pagpapatupad at Pag-iimbak ng Memorya**: Praktikal na mga paraan para magdagdag ng kakayahan sa memorya sa iyong AI agents, na nakatuon sa short-term at long-term memory.
+• **Pagsasakatuparan at Pag-iimbak ng Memorya**: Mga praktikal na paraan para magdagdag ng memory capabilities sa iyong AI agents, na nakatuon sa short-term at long-term memory.
 
-• **Pagpapahusay ng AI Agents**: Paano nagagamit ang memorya upang matuto ang mga agent mula sa nakaraang interaksyon at mag-improve sa paglipas ng panahon.
+• **Paggawa ng AI Agents na Self-Improving**: Paano pinapayagan ng memorya ang mga ahente na matuto mula sa mga nakaraang interaksyon at umunlad sa paglipas ng panahon.
 
-## Mga Magagamit na Implementasyon
+## Mga Available na Implementasyon
 
-Kasama sa araling ito ang dalawang komprehensibong notebook tutorial:
+Kasama sa araling ito ang dalawang komprehensibong notebook tutorials:
 
-• **[13-agent-memory.ipynb](./13-agent-memory.ipynb)**: Nagpapatupad ng memorya gamit ang Mem0 at Azure AI Search sa Semantic Kernel framework.
+• **[13-agent-memory.ipynb](./13-agent-memory.ipynb)**: Nagsasakatuparan ng memorya gamit ang Mem0 at Azure AI Search gamit ang Semantic Kernel framework
 
-• **[13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)**: Nagpapatupad ng structured memory gamit ang Cognee, awtomatikong gumagawa ng knowledge graph na suportado ng embeddings, nag-visualize ng graph, at may intelligent retrieval.
+• **[13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)**: Nagsasakatuparan ng istrukturadong memorya gamit ang Cognee, awtomatikong bumubuo ng knowledge graph na suportado ng embeddings, nagvi-visualize ng graph, at intelihenteng retrieval
 
 ## Mga Layunin sa Pagkatuto
 
 Pagkatapos makumpleto ang araling ito, malalaman mo kung paano:
 
-• **Pag-iba-ibahin ang iba't ibang uri ng memorya ng AI agent**, kabilang ang working, short-term, at long-term memory, pati na rin ang mga espesyal na anyo tulad ng persona at episodic memory.
+• **I-iba-iba ang iba't ibang uri ng AI agent memory**, kabilang ang working, short-term, at long-term memory, pati na rin ang mga espesyalisadong anyo tulad ng persona at episodic memory.
 
-• **Ipapatupad at pamahalaan ang short-term at long-term memory para sa AI agents** gamit ang Semantic Kernel framework, gamit ang mga tool tulad ng Mem0, Cognee, Whiteboard memory, at pagsasama sa Azure AI Search.
+• **Isagawa at pamahalaan ang short-term at long-term memory para sa AI agents** gamit ang Semantic Kernel framework, na gumagamit ng mga tool tulad ng Mem0, Cognee, Whiteboard memory, at pag-integrate sa Azure AI Search.
 
-• **Maunawaan ang mga prinsipyo sa likod ng self-improving AI agents** at kung paano nakakatulong ang matatag na memory management systems sa tuloy-tuloy na pagkatuto at pag-aangkop.
+• **Unawain ang mga prinsipyo sa likod ng self-improving AI agents** at kung paano nakakatulong ang matatag na mga sistema ng pamamahala ng memorya sa patuloy na pag-aaral at pag-angkop.
 
-## Pag-unawa sa Memorya ng AI Agent
+## Pag-unawa sa AI Agent Memory
 
-Sa pinakapayak na anyo, **ang memorya para sa AI agents ay tumutukoy sa mga mekanismo na nagpapahintulot sa kanila na magpanatili at magbalik ng impormasyon**. Ang impormasyong ito ay maaaring mga detalye ng isang pag-uusap, mga kagustuhan ng user, mga nakaraang aksyon, o mga natutunang pattern.
+Sa pinaka-puso nito, **ang memorya para sa AI agents ay tumutukoy sa mga mekanismo na nagpapahintulot sa kanila na mag-imbak at magalala ng impormasyon**. Ang impormasyong ito ay maaaring mga partikular na detalye tungkol sa isang pag-uusap, mga kagustuhan ng gumagamit, mga nakaraang aksyon, o kahit na mga natutunang pattern.
 
-Kung walang memorya, ang mga AI application ay madalas na stateless, ibig sabihin, bawat interaksyon ay nagsisimula mula sa simula. Nagdudulot ito ng paulit-ulit at nakakainis na karanasan para sa user kung saan "nakakalimutan" ng agent ang nakaraang konteksto o mga kagustuhan.
+Kung walang memorya, madalas stateless ang mga AI application, ibig sabihin bawat interaksyon ay nagsisimula sa simula. Nagdudulot ito ng paulit-ulit at nakakainis na karanasan para sa gumagamit kung saan "nakakalimot" ang ahente sa mga naunang konteksto o kagustuhan.
 
 ### Bakit Mahalaga ang Memorya?
 
-Ang katalinuhan ng isang agent ay malapit na konektado sa kakayahan nitong maalala at magamit ang nakaraang impormasyon. Ang memorya ay nagpapahintulot sa mga agent na maging:
+Malalim ang pagkakaugnay ng katalinuhan ng isang ahente sa kakayahan nitong alalahanin at gamitin ang mga nakaraang impormasyon. Pinapayagan ng memorya ang mga ahente na maging:
 
-• **Reflective**: Natututo mula sa mga nakaraang aksyon at resulta.
+• **Reflective**: Matuto mula sa mga nakaraang aksyon at kinalabasan.
 
-• **Interactive**: Pinapanatili ang konteksto sa isang patuloy na pag-uusap.
+• **Interactive**: Panatilihin ang konteksto sa isang patuloy na pag-uusap.
 
-• **Proactive at Reactive**: Nahuhulaan ang mga pangangailangan o tumutugon nang naaangkop batay sa nakaraang data.
+• **Proactive at Reactive**: Asahan ang mga pangangailangan o tumugon nang naaayon batay sa nakaraang datos.
 
-• **Autonomous**: Mas nagiging independent sa pamamagitan ng paggamit ng nakaimbak na kaalaman.
+• **Autonomous**: Gumana nang mas independyente sa pamamagitan ng paggamit ng naka-imbak na kaalaman.
 
-Ang layunin ng pagpapatupad ng memorya ay gawing mas **maaasahan at may kakayahan** ang mga agent.
+Ang layunin ng pagsasakatuparan ng memorya ay gawing mas **mapagkakatiwalaan at may kakayahan** ang mga ahente.
 
 ### Mga Uri ng Memorya
 
 #### Working Memory
 
-Isipin ito bilang isang piraso ng scratch paper na ginagamit ng agent sa isang solong gawain o proseso ng pag-iisip. Pinapanatili nito ang agarang impormasyon na kailangan para sa susunod na hakbang.
+Isipin ito bilang isang piraso ng scratch paper na ginagamit ng ahente habang nagsasagawa ng isang gawain o pag-iisip na nagpapatuloy. Dito itinatago ang agarang kinakailangang impormasyon upang makalkula ang susunod na hakbang.
 
-Para sa AI agents, ang working memory ay madalas na kumukuha ng pinaka-makabuluhang impormasyon mula sa isang pag-uusap, kahit na mahaba o putol-putol ang buong chat history. Nakatuon ito sa pagkuha ng mga pangunahing elemento tulad ng mga kinakailangan, panukala, desisyon, at aksyon.
+Para sa AI agents, kadalasang kinukuha ng working memory ang pinaka-mahahalagang impormasyon mula sa isang pag-uusap, kahit na mahaba o putol ang buong chat history. Nakatuon ito sa pagkuha ng mga mahahalagang elemento tulad ng mga pangangailangan, panukala, desisyon, at mga aksyon.
 
 **Halimbawa ng Working Memory**
 
-Sa isang travel booking agent, maaaring makuha ng working memory ang kasalukuyang kahilingan ng user, tulad ng "Gusto kong mag-book ng biyahe papuntang Paris". Ang partikular na kahilingang ito ay nananatili sa agarang konteksto ng agent upang gabayan ang kasalukuyang interaksyon.
+Sa isang travel booking agent, maaaring i-capture ng working memory ang kasalukuyang kahilingan ng gumagamit, tulad ng "Gusto kong mag-book ng biyahe sa Paris". Ang espesipikong pangangailangan na ito ay hinahawakan sa agarang konteksto ng ahente upang gabayan ang kasalukuyang interaksyon.
 
 #### Short Term Memory
 
-Ang ganitong uri ng memorya ay nagtatago ng impormasyon sa tagal ng isang pag-uusap o sesyon. Ito ang konteksto ng kasalukuyang chat, na nagpapahintulot sa agent na bumalik sa mga nakaraang bahagi ng diyalogo.
+Ang uri ng memoryang ito ay nagtatago ng impormasyon para sa tagal ng isang pag-uusap o sesyon. Ito ang konteksto ng kasalukuyang usapan, na nagbibigay-daan sa ahente na tumukoy muli sa mga nakaraang bahagi ng dayalogo.
 
 **Halimbawa ng Short Term Memory**
 
-Kung ang isang user ay magtanong, "Magkano ang flight papuntang Paris?" at pagkatapos ay mag-follow up ng "Paano naman ang tirahan doon?", tinitiyak ng short-term memory na alam ng agent na ang "doon" ay tumutukoy sa "Paris" sa parehong pag-uusap.
+Kung ang isang gumagamit ay nagtanong, "Magkano ang flight papuntang Paris?" at sumunod na nagtanong, "Paano naman ang tirahan doon?", sinisiguro ng short-term memory na alam ng ahente na ang "doon" ay tumutukoy sa "Paris" sa loob ng iisang pag-uusap.
 
 #### Long Term Memory
 
-Ito ay impormasyon na nananatili sa kabila ng maraming pag-uusap o sesyon. Pinapayagan nito ang mga agent na maalala ang mga kagustuhan ng user, mga nakaraang interaksyon, o pangkalahatang kaalaman sa mahabang panahon. Mahalaga ito para sa personalisasyon.
+Ito ay impormasyon na nananatili sa maraming mga pag-uusap o sesyon. Pinapayagan nito ang mga ahente na maalala ang mga kagustuhan ng gumagamit, mga nakaraang interaksyon, o pangkalahatang kaalaman sa mahabang panahon. Mahalaga ito para sa personalisasyon.
 
 **Halimbawa ng Long Term Memory**
 
-Ang long-term memory ay maaaring mag-imbak ng impormasyon tulad ng "Mahilig si Ben sa skiing at outdoor activities, gusto niya ng kape na may tanawin ng bundok, at nais niyang iwasan ang advanced ski slopes dahil sa isang nakaraang pinsala". Ang impormasyong ito, na natutunan mula sa mga nakaraang interaksyon, ay nakakaimpluwensya sa mga rekomendasyon sa mga susunod na sesyon ng pagpaplano ng biyahe, na ginagawang mas personal ang mga ito.
+Maaaring itago ng long-term memory na "Si Ben ay mahilig sa skiing at mga outdoor na aktibidad, gusto ng kape na may tanawin ng bundok, at nais iwasan ang mga advanced na ski slope dahil sa isang dating pinsala". Ang impormasyong ito, na natutunan mula sa mga nakaraang interaksyon, ay nakakaapekto sa mga rekomendasyon sa mga susunod na sesyon ng pagpaplano ng biyahe, na ginagawa silang mas personalisado.
 
 #### Persona Memory
 
-Ang ganitong uri ng memorya ay tumutulong sa isang agent na bumuo ng isang pare-parehong "personalidad" o "persona". Pinapayagan nito ang agent na maalala ang mga detalye tungkol sa sarili nito o sa nilalayong papel nito, na ginagawang mas maayos at nakatuon ang mga interaksyon.
+Ang espesyalisadong uri ng memoryang ito ay tumutulong sa ahente na magkaroon ng isang konsistenteng "personalidad" o "persona". Pinapayagan nito ang ahente na maalala ang mga detalye tungkol sa sarili nito o sa kanyang nakatalagang papel, na ginagawa ang mga interaksyon na mas maayos at nakatuon.
 
 **Halimbawa ng Persona Memory**
 
-Kung ang travel agent ay idinisenyo bilang isang "eksperto sa ski planning," maaaring palakasin ng persona memory ang papel na ito, na nakakaimpluwensya sa mga tugon nito upang umayon sa tono at kaalaman ng isang eksperto.
+Kung ang travel agent ay dinisenyo bilang "ekspertong planner ng ski," maaaring palakasin ng persona memory ang papel na ito, na nakakaapekto sa mga tugon nito upang tumugma sa tono at kaalaman ng isang eksperto.
 
 #### Workflow/Episodic Memory
 
-Ang memoryang ito ay nagtatago ng pagkakasunod-sunod ng mga hakbang na ginagawa ng isang agent sa isang kumplikadong gawain, kabilang ang mga tagumpay at kabiguan. Para itong pag-alala sa mga partikular na "episode" o nakaraang karanasan upang matuto mula rito.
+Itong memorya ay nagtatago ng pagkakasunod-sunod ng mga hakbang na ginawa ng ahente sa isang komplikadong gawain, kabilang ang mga tagumpay at kabiguan. Para itong pag-alala ng mga partikular na "episode" o mga nakaraang karanasan upang matuto mula dito.
 
 **Halimbawa ng Episodic Memory**
 
-Kung sinubukan ng agent na mag-book ng isang partikular na flight ngunit nabigo dahil sa kawalan ng availability, maaaring i-record ng episodic memory ang kabiguang ito, na nagpapahintulot sa agent na subukan ang mga alternatibong flight o ipaalam sa user ang isyu sa mas may kaalamang paraan sa susunod na pagtatangka.
+Kung sinubukan ng ahente na mag-book ng isang partikular na flight ngunit nabigo dahil sa hindi pagkakaroon, maaaring i-record ng episodic memory ang pagkabigong ito, na nagbibigay-daan sa ahente na subukan ang mga alternatibong flight o ipaalam sa gumagamit ang tungkol sa isyu sa mas maalam na paraan sa susunod na pagtatangka.
 
 #### Entity Memory
 
-Kasama rito ang pagkuha at pag-alala ng mga partikular na entity (tulad ng mga tao, lugar, o bagay) at mga kaganapan mula sa mga pag-uusap. Pinapayagan nito ang agent na bumuo ng isang structured na pag-unawa sa mga pangunahing elementong tinalakay.
+Ito ay may kaugnayan sa pagkuha at pag-alaala ng mga partikular na entidad (tulad ng mga tao, lugar, o bagay) at mga pangyayari mula sa mga pag-uusap. Pinapayagan nito ang ahente na bumuo ng isang istrakturadong pag-unawa sa mga mahahalagang elemento na tinalakay.
 
 **Halimbawa ng Entity Memory**
 
-Mula sa isang pag-uusap tungkol sa isang nakaraang biyahe, maaaring makuha ng agent ang "Paris," "Eiffel Tower," at "hapunan sa Le Chat Noir restaurant" bilang mga entity. Sa isang hinaharap na interaksyon, maaaring maalala ng agent ang "Le Chat Noir" at mag-alok na mag-book muli ng reservation doon.
+Mula sa isang pag-uusap tungkol sa nakaraang biyahe, maaaring kuhanin ng ahente ang "Paris," "Eiffel Tower," at "hapunan sa Le Chat Noir restaurant" bilang mga entidad. Sa isang susunod na interaksyon, maaaring maalala ng ahente ang "Le Chat Noir" at mag-alok na gumawa ng bagong reserbasyon doon.
 
 #### Structured RAG (Retrieval Augmented Generation)
 
-Habang ang RAG ay isang mas malawak na teknolohiya, ang "Structured RAG" ay binibigyang-diin bilang isang makapangyarihang memory technology. Kinukuha nito ang masinsinang, structured na impormasyon mula sa iba't ibang mapagkukunan (mga pag-uusap, email, larawan) at ginagamit ito upang mapahusay ang precision, recall, at bilis ng mga tugon. Hindi tulad ng klasikong RAG na umaasa lamang sa semantic similarity, ang Structured RAG ay gumagana sa inherent na istruktura ng impormasyon.
+Habang ang RAG ay isang mas malawak na teknik, ang "Structured RAG" ay pinag-highlight bilang isang makapangyarihang teknolohiya ng memorya. Kinukuha nito ang siksik, istrukturadong impormasyon mula sa iba't ibang mga pinanggalingan (mga pag-uusap, email, larawan) at ginagamit ito upang mapahusay ang katumpakan, recall, at bilis sa mga tugon. Hindi tulad ng klasikong RAG na nakabatay lamang sa semantic similarity, ang Structured RAG ay nagtatrabaho gamit ang likas na istruktura ng impormasyon.
 
 **Halimbawa ng Structured RAG**
 
-Sa halip na tumugma lamang sa mga keyword, maaaring i-parse ng Structured RAG ang mga detalye ng flight (destinasyon, petsa, oras, airline) mula sa isang email at iimbak ang mga ito sa isang structured na paraan. Pinapayagan nito ang mga eksaktong query tulad ng "Anong flight ang na-book ko papuntang Paris sa Martes?"
+Sa halip na tumugma lang sa mga keyword, maaaring i-parse ng Structured RAG ang mga detalye ng flight (destinasyon, petsa, oras, airline) mula sa isang email at iimbak ito sa istrukturadong paraan. Nagbibigay ito ng tumpak na mga query tulad ng "Anong flight ang na-book ko papuntang Paris noong Martes?"
 
-## Pagpapatupad at Pag-iimbak ng Memorya
+## Pagsasakatuparan at Pag-iimbak ng Memorya
 
-Ang pagpapatupad ng memorya para sa AI agents ay nangangailangan ng sistematikong proseso ng **memory management**, na kinabibilangan ng pagbuo, pag-iimbak, pagkuha, pagsasama, pag-update, at kahit "pagkalimot" (o pagtanggal) ng impormasyon. Ang retrieval ay isang partikular na mahalagang aspeto.
+Ang pagsasakatuparan ng memorya para sa AI agents ay nangangailangan ng sistematikong proseso ng **pamamahala ng memorya**, na kinabibilangan ng pagbuo, pag-iimbak, pagkuha, pagsasama, pag-update, at maging ng "pagkawala" (o pagtanggal) ng impormasyon. Ang retrieval ay isang partikular na mahalagang aspeto.
 
-### Mga Espesyal na Tool sa Memorya
+### Espesyalisadong Mga Tool para sa Memorya
 
 #### Mem0
 
-Isa sa mga paraan upang mag-imbak at pamahalaan ang memorya ng agent ay ang paggamit ng mga espesyal na tool tulad ng Mem0. Ang Mem0 ay gumagana bilang isang persistent memory layer, na nagpapahintulot sa mga agent na maalala ang mga kaugnay na interaksyon, mag-imbak ng mga kagustuhan ng user at factual context, at matuto mula sa mga tagumpay at kabiguan sa paglipas ng panahon. Ang ideya dito ay ang mga stateless agents ay nagiging stateful.
+Isang paraan upang mag-imbak at pamahalaan ang memorya ng ahente ay gamit ang espesyalisadong mga tool tulad ng Mem0. Ang Mem0 ay gumagana bilang isang persistent memory layer, na nagpapahintulot sa mga ahente na maalala ang mga kaugnay na interaksyon, itago ang mga kagustuhan ng gumagamit at totoong konteksto, at matuto mula sa mga tagumpay at kabiguan sa paglipas ng panahon. Ang ideya dito ay na ang mga stateless na ahente ay magiging stateful.
 
-Gumagana ito sa pamamagitan ng isang **two-phase memory pipeline: extraction at update**. Una, ang mga mensaheng idinagdag sa thread ng agent ay ipinapadala sa Mem0 service, na gumagamit ng Large Language Model (LLM) upang ibuod ang kasaysayan ng pag-uusap at kunin ang mga bagong memorya. Pagkatapos, ang isang LLM-driven update phase ay tumutukoy kung idaragdag, babaguhin, o tatanggalin ang mga memoryang ito, na iniimbak ang mga ito sa isang hybrid data store na maaaring magsama ng vector, graph, at key-value databases. Sinusuportahan din ng sistemang ito ang iba't ibang uri ng memorya at maaaring isama ang graph memory para sa pamamahala ng mga relasyon sa pagitan ng mga entity.
+Ito ay gumagana sa pamamagitan ng isang **dalawang-phase memory pipeline: extraction at update**. Una, ang mga mensahe na idinadagdag sa thread ng ahente ay ipinapadala sa serbisyo ng Mem0, na gumagamit ng Large Language Model (LLM) upang lagumin ang kasaysayan ng pag-uusap at kunin ang mga bagong memorya. Kasunod nito, isang LLM-driven update phase ang tumutukoy kung magdadagdag, magbabago, o magtatanggal ng mga memorya, iniimbak ang mga ito sa isang hybrid data store na maaaring magsama ng vector, graph, at key-value na mga database. Sinusuportahan din ng sistemang ito ang iba't ibang uri ng memorya at maaaring mag-incorporate ng graph memory para pamahalaan ang mga relasyon sa pagitan ng mga entidad.
 
 #### Cognee
 
-Isa pang makapangyarihang paraan ay ang paggamit ng **Cognee**, isang open-source semantic memory para sa AI agents na nagbabago ng structured at unstructured data sa queryable knowledge graphs na suportado ng embeddings. Nagbibigay ang Cognee ng **dual-store architecture** na pinagsasama ang vector similarity search sa graph relationships, na nagpapahintulot sa mga agent na maunawaan hindi lamang kung anong impormasyon ang magkatulad, kundi kung paano nauugnay ang mga konsepto sa isa't isa.
+Isa pang makapangyarihang lapit ay ang paggamit ng **Cognee**, isang open-source semantic memory para sa AI agents na nagko-convert ng istrukturado at hindi istrukturadong data sa queryable knowledge graphs na suportado ng embeddings. Nagbibigay ang Cognee ng **dual-store architecture** na pinagsasama ang vector similarity search at graph relationships, na nagpapahintulot sa mga ahente na maunawaan hindi lamang kung ano ang magkakapareho, kundi kung paano nag-uugnay ang mga konsepto sa isa't isa.
 
-Mahusay ito sa **hybrid retrieval** na pinagsasama ang vector similarity, graph structure, at LLM reasoning - mula sa raw chunk lookup hanggang sa graph-aware question answering. Pinapanatili ng sistema ang **living memory** na patuloy na umuunlad at lumalago habang nananatiling queryable bilang isang konektadong graph, na sumusuporta sa parehong short-term session context at long-term persistent memory.
+Mahusay ito sa **hybrid retrieval** na pinagsasama ang vector similarity, graph structure, at LLM reasoning - mula sa raw chunk lookup hanggang sa graph-aware na pagsagot sa mga tanong. Pinananatili ng sistema ang **living memory** na nag-e-evolve at lumalago habang nananatiling queryable bilang isang konektadong graph, na sumusuporta sa parehong short-term session context at long-term persistent memory.
 
-Ang Cognee notebook tutorial ([13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)) ay nagpapakita ng paggawa ng unified memory layer na ito, na may mga praktikal na halimbawa ng pag-ingest ng iba't ibang mapagkukunan ng data, pag-visualize ng knowledge graph, at pag-query gamit ang iba't ibang search strategies na iniayon sa mga partikular na pangangailangan ng agent.
+Ipinapakita ng Cognee notebook tutorial ([13-agent-memory-cognee.ipynb](./13-agent-memory-cognee.ipynb)) ang pagtatayo ng unified memory layer na ito, na may mga praktikal na halimbawa ng pag-ingest ng iba't ibang data source, pag-visualize ng knowledge graph, at pag-query gamit ang iba't ibang mga search strategies na iniakma sa mga partikular na pangangailangan ng ahente.
 
 ### Pag-iimbak ng Memorya gamit ang RAG
 
-Bukod sa mga espesyal na tool sa memorya tulad ng Mem0, maaari mong gamitin ang mga matatag na search services tulad ng **Azure AI Search bilang backend para sa pag-iimbak at pagkuha ng mga memorya**, lalo na para sa structured RAG.
+Bukod sa mga espesyalisadong memory tool tulad ng mem0 , maaari mong gamitin ang matibay na mga search service tulad ng **Azure AI Search bilang backend para sa pag-iimbak at pagkuha ng mga memorya**, lalo na para sa structured RAG.
 
-Pinapayagan ka nitong i-ground ang mga tugon ng iyong agent gamit ang sarili mong data, na tinitiyak ang mas may kaugnayan at tumpak na mga sagot. Ang Azure AI Search ay maaaring gamitin upang mag-imbak ng mga user-specific travel memories, product catalogs, o anumang iba pang domain-specific knowledge.
+Pinapayagan ka nitong gawing grounded ang mga tugon ng iyong ahente sa sarili mong data, na tinitiyak ang mas may kaugnayan at tumpak na mga sagot. Maaaring gamitin ang Azure AI Search para i-imbak ang mga user-specific travel memories, product catalogs, o anumang domain-specific knowledge.
 
-Sinusuportahan ng Azure AI Search ang mga kakayahan tulad ng **Structured RAG**, na mahusay sa pagkuha at pag-retrieve ng masinsinang, structured na impormasyon mula sa malalaking dataset tulad ng mga kasaysayan ng pag-uusap, email, o kahit mga larawan. Nagbibigay ito ng "superhuman precision and recall" kumpara sa tradisyunal na text chunking at embedding approaches.
+Sinusuportahan ng Azure AI Search ang mga kakayahan tulad ng **Structured RAG**, na mahusay sa pagkuha at paggamit ng siksik, istrukturadong impormasyon mula sa malalaking dataset tulad ng kasaysayan ng pag-uusap, email, o kahit mga larawan. Nagbibigay ito ng "superhuman precision and recall" kumpara sa tradisyonal na text chunking at embedding na mga pamamaraan.
 
-## Pagpapahusay ng AI Agents
+## Paggawa ng AI Agents na Self-Improve
 
-Isang karaniwang pattern para sa self-improving agents ay ang pagpapakilala ng isang **"knowledge agent"**. Ang hiwalay na agent na ito ay nagmamasid sa pangunahing pag-uusap sa pagitan ng user at ng pangunahing agent. Ang papel nito ay:
+Isang karaniwang pattern para sa self-improving agents ay ang pagpapakilala ng isang **"knowledge agent"**. Ang hiwalay na ahenteng ito ay nagmamasid sa pangunahing pag-uusap sa pagitan ng gumagamit at ng pangunahing ahente. Ang layunin nito ay:
 
-1. **Tukuyin ang mahalagang impormasyon**: Tukuyin kung alinmang bahagi ng pag-uusap ang mahalagang i-save bilang pangkalahatang kaalaman o partikular na kagustuhan ng user.
+1. **Kilalanin ang mahalagang impormasyon**: Tukuyin kung alinmang bahagi ng pag-uusap ang karapat-dapat i-save bilang pangkalahatang kaalaman o partikular na kagustuhan ng gumagamit.
 
-2. **Kunin at ibuod**: I-distill ang mahahalagang natutunan o kagustuhan mula sa pag-uusap.
+2. **I-extract at lagumin**: Kunin ang mahahalagang aral o kagustuhan mula sa pag-uusap.
 
-3. **I-imbak sa knowledge base**: I-persist ang nakuhang impormasyon, kadalasan sa isang vector database, upang ito ay ma-retrieve sa hinaharap.
+3. **I-imbak sa knowledge base**: Itabi ang nakuha na impormasyon, madalas sa isang vector database, upang madaling makuha pagkatapos.
 
-4. **Palakasin ang mga susunod na query**: Kapag nagpasimula ang user ng bagong query, kinukuha ng knowledge agent ang kaugnay na nakaimbak na impormasyon at idinadagdag ito sa prompt ng user, na nagbibigay ng mahalagang konteksto sa pangunahing agent (katulad ng RAG).
+4. **Dagdagan ang mga susunod na query**: Kapag ang gumagamit ay nagsimula ng bagong query, kinukuha ng knowledge agent ang mga kaugnay na nakaimbak na impormasyon at idinadagdag ito sa prompt ng gumagamit, nagbibigay ng mahalagang konteksto sa pangunahing ahente (katulad ng RAG).
 
-### Mga Pag-optimize para sa Memorya
+### Mga Optimisasyon para sa Memorya
 
-• **Pamamahala ng Latency**: Upang maiwasan ang pagbagal ng mga interaksyon ng user, maaaring gumamit ng mas mura at mas mabilis na modelo sa simula upang mabilis na suriin kung mahalagang i-store o i-retrieve ang impormasyon, at gagamitin lamang ang mas kumplikadong proseso ng extraction/retrieval kapag kinakailangan.
+• **Pamahalaan ang Latency**: Upang maiwasan ang pagpapabagal ng interaksyon ng gumagamit, maaaring gamitin muna ang mas mura at mabilis na modelo upang mabilis na siyasatin kung mahalaga bang i-imbak o hanapin ang impormasyon, at saka lamang tawagin ang mas komplikadong proseso ng extraction/retrieval kung kinakailangan.
 
-• **Pagpapanatili ng Knowledge Base**: Para sa lumalaking knowledge base, ang mas madalang gamitin na impormasyon ay maaaring ilipat sa "cold storage" upang mapamahalaan ang mga gastos.
+• **Pangangalaga sa Knowledge Base**: Para sa lumalaking knowledge base, ang mga impormasyong hindi madalas gamitin ay maaaring ilipat sa "cold storage" upang mabawasan ang gastos.
 
-## May Karagdagang Tanong Tungkol sa Memorya ng Agent?
+## May Karagdagang Mga Tanong Tungkol sa Agent Memory?
 
-Sumali sa [Azure AI Foundry Discord](https://aka.ms/ai-agents/discord) upang makipag-usap sa iba pang mga nag-aaral, dumalo sa office hours, at masagot ang iyong mga tanong tungkol sa AI Agents.
+Sumali sa [Azure AI Foundry Discord](https://aka.ms/ai-agents/discord) upang makilala ang ibang mga nag-aaral, dumalo sa office hours, at sagutin ang iyong mga tanong tungkol sa AI Agents.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat sinisikap naming maging tumpak, mangyaring tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
+**Paunawa**:
+Ang dokumentong ito ay isinalin gamit ang serbisyong AI na pagsasalin na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat pinagsisikapan naming maging tumpak, pakatandaan na maaaring may mga pagkakamali o hindi pagkakatotoo ang mga awtomatikong pagsasalin. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na opisyal na sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
